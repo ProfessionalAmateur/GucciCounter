@@ -5,13 +5,15 @@
 2. **TinyAccelerometer** (https://tinycircuits.com/products/accelerometer-tinyshield)
 3. **Battery** (https://tinycircuits.com/products/lithium-ion-polymer-battery-3-7v-290mah)
 4. **M3 bolt** (35mm)
-5. **M3 Locking Nylon Nut**
+5. **M3 Locking Nylon Nut**  
+6. **Tactical paper clip** To press the buttons on the screen
 
-## Parts to 3D print
+## Parts to 3D print:  
+
+1. **Main housing** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/TinyScreenMainHousingPicatinny.stl  
+2. **Picatinny small arm:** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/MainHousingArmPicatinny.stl  
+3. **Back Cover:** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/TinyScreenBackPlate.stl  
 (Please rotate objects as needed with your slicer for best printing quality)  
-**Main housing** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/TinyScreenMainHousingPicatinny.stl  
-**Picatinny small arm:** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/TinyScreenBackPlate.stl  
-**Back Cover:** https://github.com/ProfessionalAmateur/GucciCounter/blob/master/TinyScreenBackPlate.stl
 
 Once printed I drill out the bolt holes because the original design wanted something smaller, but I think an M3 bolt is better/best for a picatinny rail.
 
