@@ -39,6 +39,7 @@ After the battery is fully charged attached the unit to the picatinny rail if yo
 
 ## Constants/Variables
 There are a couple of constant variables in the program you can feel free to change:  
+  
 **BIG_MAG:** I keep mine at 30 but if folks have 50 or 100 or 256 round magazine you will want to change this number.
 
 **LITTLE_MAG:** Same as above if you have  10, 5 or 1 round magazine you will want to change this number.   
