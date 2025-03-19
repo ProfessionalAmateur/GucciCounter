@@ -1,0 +1,49 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Theia IDE settings
+.theia/
+
+# Ignore Node.js dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Ignore Python virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore compiled files
+*.class
+*.o
+*.so
+*.out
+*.exe
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Ignore build artifacts
+/dist/
+/build/
+/target/
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Ignore environment variables and credentials (always add manually if needed)
+.env
+*.env
+config.json
+secrets.json
