@@ -16,7 +16,7 @@ const int BIG_MAG = 30;
 const int LITTLE_MAG = 20;
 const float Z_AXIS_GFORCE_THRESHOLD = 2.0;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
-const float Y_AXIS_GFORCE_THRESHOLD = 2.0;
+const float Y_AXIS_GFORCE_THRESHOLD = 0.65;
 
 // Define the update interval (in milliseconds)
 #define UPDATE_INTERVAL 16  // 500 ms = 0.5 seconds
