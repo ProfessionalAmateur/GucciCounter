@@ -23,12 +23,12 @@ https://github.com/ProfessionalAmateur/GucciCounter
 
 
 **Assembly:** The accelerometer clips right into the back of the TinyScreen+ as well as the battery.
-Once assembled, connect the screen to your computer via a micro USB cable (this cable also charges the battery).
-Insert the screen, accelerometer and battery into the 3d printed housing and affix the back cover.
-
+Once assembled insert the screen, accelerometer and battery into the 3d printed housing and affix the back cover.  
+  
+Connect the screen to your computer via a micro USB cable (this cable also charges the battery).
 Open up Arduino IDE and upload the code program downloaded in step 3. (You may need to research how to connect your arduino to your PC but it is really straight forward.)
 
-After the battery is fully charged attached the unit to the picatinny rail if your desire.
+After the battery is fully charged and program uploaded to the device attached the unit to the picatinny rail if your desire.
 
 ## Button functions:
 
