@@ -17,7 +17,7 @@ bool increment = true;
 const int BIG_MAG = 30;
 const int LITTLE_MAG = 20;
 const float Z_AXIS_GFORCE_THRESHOLD = 0.75;
-const float X_AXIS_GFORCE_THRESHOLD = 1.10;
+const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
 const int COUNT_DELAY = 50;  
 
@@ -80,7 +80,7 @@ void writeAccel()
 
   // Counter Logic
   // if the current z accel reading is +/- 2g increment counter
-  if((fabs(z_g) > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) < X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) < Y_AXIS_GFORCE_THRESHOLD))
+  if((fabs(z_g) > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) > X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) < Y_AXIS_GFORCE_THRESHOLD))
   {
     if(increment)
     {
