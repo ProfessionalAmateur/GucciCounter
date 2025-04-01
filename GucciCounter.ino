@@ -133,7 +133,7 @@ void displayDebug(){
   display.setFont(liberationSansNarrow_8ptFontInfo);
   display.fontColor(TS_8b_Red,TS_8b_Black);
   display.setCursor(65,5);
-  display.print("X(m)" + String()fabs(max_xg)));
+  display.print("X(m)" + String(max_xg));
   display.setCursor(65,15);
   display.print("Y(m)" + String(max_yg));
   display.setCursor(5,45);
