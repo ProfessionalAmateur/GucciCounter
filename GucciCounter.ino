@@ -19,7 +19,7 @@ const int LITTLE_MAG = 20;
 const float Z_AXIS_GFORCE_THRESHOLD = 0.75;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
-const int COUNT_DELAY = 250;  
+const int COUNT_DELAY = 150;  
 
 // Define the update interval (in milliseconds)
 #define UPDATE_INTERVAL 16  // 500 ms = 0.5 seconds
@@ -80,7 +80,7 @@ void writeAccel()
 
   // Counter Logic
   // if the current z accel reading is +/- 2g increment counter
-  if((fabs(z_g) > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) > X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) < Y_AXIS_GFORCE_THRESHOLD))
+  if((fabs(z_g) > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) >= X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) <= Y_AXIS_GFORCE_THRESHOLD))
   {
     if(increment)
     {
@@ -133,9 +133,9 @@ void displayDebug(){
   display.setFont(liberationSansNarrow_8ptFontInfo);
   display.fontColor(TS_8b_Red,TS_8b_Black);
   display.setCursor(65,5);
-  display.print("X" + String(max_xg));
+  display.print("X" + String(x_g));
   display.setCursor(65,15);
-  display.print("Y" + String(max_yg));
+  display.print("Y" + String(y_g));
   display.setCursor(5,45);
   display.print("Z(m): " + String(max_zg));
  //==========================================================
