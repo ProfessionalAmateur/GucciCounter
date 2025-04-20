@@ -4,8 +4,8 @@
 #include "BMA250.h"
 #include <cmath>
 
-//Library must be passed the board type
-//TinyScreenPlus for TinyScreen+
+// Library must be passed the board type
+// TinyScreenPlus for TinyScreen+
 TinyScreen display = TinyScreen(TinyScreenPlus);
 int ctr = 0;
 BMA250 accel_sensor;
@@ -19,33 +19,37 @@ const int LITTLE_MAG = 20;
 const float Z_AXIS_GFORCE_THRESHOLD = 0.75;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
-const int COUNT_DELAY = 150;  
+const int COUNT_DELAY = 150;
 
 // Define the update interval (in milliseconds)
-#define UPDATE_INTERVAL 16  // 500 ms = 0.5 seconds
+#define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
 
-void setup(void) {  
+void setup(void)
+{
   display.begin();
   // Sets main current level, valid levels are 0-15
   display.setBrightness(10);
   flipDisplay(true);
   Wire.begin();
   // Set up the BMA250 acccelerometer sensor
-  accel_sensor.begin(BMA250_range_16g, BMA250_update_time_16ms); 
+  accel_sensor.begin(BMA250_range_16g, BMA250_update_time_16ms);
 }
 
-void loop() {  
+void loop()
+{
   // If the BMA250 is not found, nor connected correctly, these values will be produced
-  // by the sensor 
-  if (x == -1 && y == -1 && z == -1) {
+  // by the sensor
+  if (x == -1 && y == -1 && z == -1)
+  {
     // Print error message to Serial Monitor
-    // Should probably error some how, some way....        
+    // Should probably error some how, some way....
   }
-  else { // if we have correct sensor readings:     
+  else
+  { // if we have correct sensor readings:
     writeAccel();
   }
   buttonLoop();
-  delay(UPDATE_INTERVAL);  
+  delay(UPDATE_INTERVAL);
 }
 
 void flipDisplay(bool flipFlag)
@@ -54,8 +58,8 @@ void flipDisplay(bool flipFlag)
 }
 
 void writeAccel()
-{  
-  if(!increment && ctr == 0)
+{
+  if (!increment && ctr == 0)
   {
     writeGameOver();
     return;
@@ -65,133 +69,144 @@ void writeAccel()
   display.drawRect(0, 0, 96, 64, TSRectangleNoFill, 255, 0, 0);
 
   // Fetch accelerometer data and convert as needed.
-  accel_sensor.read(); 
-  float scaleFactor = 32.0; 
+  accel_sensor.read();
+  float scaleFactor = 32.0;
   x = accel_sensor.X;
   y = accel_sensor.Y;
   z = accel_sensor.Z;
-  // Optionally, convert to m/s²  
+  // Optionally, convert to m/s²
   float x_g = (x / scaleFactor);
   float y_g = (y / scaleFactor);
   float z_g = (z / scaleFactor);
-  float x_ms2 = (x / scaleFactor)*9.81;
-  float y_ms2 = (y / scaleFactor)*9.81;
-  float z_ms2 = (z / scaleFactor)*9.81;  
+  float x_ms2 = (x / scaleFactor) * 9.81;
+  float y_ms2 = (y / scaleFactor) * 9.81;
+  float z_ms2 = (z / scaleFactor) * 9.81;
 
   // Counter Logic
   // if the current z accel reading is +/- 2g increment counter
-  if((fabs(z_g) > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) >= X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) <= Y_AXIS_GFORCE_THRESHOLD))
+  if ((z_g > Z_AXIS_GFORCE_THRESHOLD) && (fabs(x_g) >= X_AXIS_GFORCE_THRESHOLD) && (fabs(y_g) <= Y_AXIS_GFORCE_THRESHOLD))
   {
-    if(increment)
+    if (increment)
     {
       ctr++;
     }
     else
     {
       ctr--;
-    }    
+    }
     delay(COUNT_DELAY); // I hope this is enough to capture the full round cycle but prevents double round counts
   }
 
   //==========================================================
   // Used for debugging purposes.
-  if((accel_sensor.X/scaleFactor) > max_xg)
+  if ((accel_sensor.X / scaleFactor) > max_xg)
   {
-    max_xg = accel_sensor.X/scaleFactor;
+    max_xg = accel_sensor.X / scaleFactor;
   }
-  if((accel_sensor.Y/scaleFactor) > max_yg)
+  if ((accel_sensor.Y / scaleFactor) > max_yg)
   {
-    max_yg = accel_sensor.Y/scaleFactor;
+    max_yg = accel_sensor.Y / scaleFactor;
   }
-  if((accel_sensor.Z/scaleFactor) > max_zg)
+  if ((accel_sensor.Z / scaleFactor) > max_zg)
   {
-    max_zg = accel_sensor.Z/scaleFactor;
+    max_zg = accel_sensor.Z / scaleFactor;
   }
   //==========================================================
 
   displayData();
 
   // COMMENT OUT IF NOT DEBUGGING
-  displayDebug();
-
+  displayDebug(x_g, y_g, max_zg);
 }
 
-void displayData(){
-  display.setFont(liberationSans_22ptFontInfo);  
+void displayData()
+{
+  display.setFont(liberationSans_22ptFontInfo);
   char txtCount[10];
-  itoa(ctr, txtCount, 10);  
-  int16_t x = (48 - (display.getPrintWidth(txtCount)/2));
-  int16_t y = (32 - (display.getFontHeight()/2));
+  itoa(ctr, txtCount, 10);
+  int16_t x = (48 - (display.getPrintWidth(txtCount) / 2));
+  int16_t y = (32 - (display.getFontHeight() / 2));
   display.setCursor(x, y);
-  display.fontColor(TS_8b_Red,TS_8b_Black);
-  display.print(txtCount); 
+  display.fontColor(TS_8b_Red, TS_8b_Black);
+  display.print(txtCount);
 }
 
-void displayDebug(){
-    //==========================================================
+void displayDebug(float x_g, float y_g, float max_zg)
+{
+  //==========================================================
   // Used for debugging purposes.
   display.setFont(liberationSansNarrow_8ptFontInfo);
-  display.fontColor(TS_8b_Red,TS_8b_Black);
-  display.setCursor(65,5);
+  display.fontColor(TS_8b_Red, TS_8b_Black);
+  display.setCursor(65, 5);
   display.print("X" + String(x_g));
-  display.setCursor(65,15);
+  display.setCursor(65, 15);
   display.print("Y" + String(y_g));
-  display.setCursor(5,45);
+  display.setCursor(5, 45);
   display.print("Z(m): " + String(max_zg));
- //==========================================================
+  //==========================================================
 }
 
-void buttonLoop(){
+void buttonLoop()
+{
   // 30 Round mag, decrement
-  if(display.getButtons((TSButtonUpperLeft)))
+  if (display.getButtons((TSButtonUpperLeft)))
   {
+    clearMax();
     ctr = BIG_MAG;
     increment = false;
   }
 
-// 20 Round mag, decrement
-  if(display.getButtons((TSButtonUpperRight)))
+  // 20 Round mag, decrement
+  if (display.getButtons((TSButtonUpperRight)))
   {
+    clearMax();
     ctr = LITTLE_MAG;
     increment = false;
   }
 
   // Simple counter, increment
-  if(display.getButtons((TSButtonLowerLeft)))
+  if (display.getButtons((TSButtonLowerLeft)))
   {
+    clearMax();
     ctr = 0;
     increment = true;
   }
 
   // reset max z axis g
   if (display.getButtons(TSButtonLowerRight))
-  { 
-    max_xg = 0;
-    max_yg = 0;
-    max_zg = 0;
+  {
+    clearMax();
     ctr = 0;
     increment = true;
   }
 }
 
-void writeGameOver(){  
+void clearMax()
+{
+  max_xg = 0;
+  max_yg = 0;
+  max_zg = 0;
+}
+
+void writeGameOver()
+{
   char sInsert[7] = "Insert";
   char sCoin[7] = "Coin";
 
   display.drawRect(0, 0, 96, 64, TSRectangleFilled, 255, 0, 0);
-  //setFont sets a font info header from font.h
-  //information for generating new fonts is included in font.h
-  display.setFont(liberationSans_16ptFontInfo);  
-  display.fontColor(TS_8b_Red,TS_8b_Black);
+  // setFont sets a font info header from font.h
+  // information for generating new fonts is included in font.h
+  display.setFont(liberationSans_16ptFontInfo);
+  display.fontColor(TS_8b_Red, TS_8b_Black);
 
-  int insWidth=display.getPrintWidth(sInsert);  
-  int coinWidth=display.getPrintWidth(sCoin);
-  
-  //fontColor(text color, background color);//sets text and background color
+  int insWidth = display.getPrintWidth(sInsert);
+  int coinWidth = display.getPrintWidth(sCoin);
+
+  // fontColor(text color, background color);//sets text and background color
   display.fontColor(TS_8b_Black, TS_8b_Red);
-  display.setCursor(38-(insWidth/4),10);
+  display.setCursor(38 - (insWidth / 4), 10);
   display.print(sInsert);
-  display.setCursor(38-(coinWidth/4),30);
+  display.setCursor(38 - (coinWidth / 4), 30);
   display.print(sCoin);
   delay(1000);
 }
