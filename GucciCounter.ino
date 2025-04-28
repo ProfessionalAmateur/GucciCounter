@@ -19,7 +19,7 @@ const int LITTLE_MAG = 20;
 const float Z_AXIS_GFORCE_THRESHOLD = 0.60;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
-const int COUNT_DELAY = 150;
+const int COUNT_DELAY = 50;
 
 // Define the update interval (in milliseconds)
 #define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
@@ -49,7 +49,7 @@ void loop()
     writeAccel();
   }
   buttonLoop();
-  delay(UPDATE_INTERVAL);
+  // delay(UPDATE_INTERVAL);
 }
 
 void flipDisplay(bool flipFlag)
