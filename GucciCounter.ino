@@ -20,6 +20,7 @@ const float Z_AXIS_GFORCE_THRESHOLD = 0.50;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
 const int COUNT_DELAY = 50;
+#define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
 
 // Define the update interval (in milliseconds)
 #define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
@@ -143,6 +144,7 @@ void displayDebug(float x_g, float y_g, float max_zg)
   display.print("Y" + String(y_g));
   display.setCursor(5, 45);
   display.print("Z(m): " + String(max_zg));
+  delay(UPDATE_INTERVAL);
   //==========================================================
 }
 
