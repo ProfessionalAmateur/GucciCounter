@@ -16,7 +16,7 @@ float max_zg = 0;
 bool increment = true;
 const int BIG_MAG = 30;
 const int LITTLE_MAG = 20;
-const float Z_AXIS_GFORCE_THRESHOLD = 0.60;
+const float Z_AXIS_GFORCE_THRESHOLD = 0.50;
 const float X_AXIS_GFORCE_THRESHOLD = 0.75;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
 const int COUNT_DELAY = 50;
@@ -28,7 +28,7 @@ void setup(void)
 {
   display.begin();
   // Sets main current level, valid levels are 0-15
-  display.setBrightness(10);
+  display.setBrightness(13);
   flipDisplay(true);
   Wire.begin();
   // Set up the BMA250 acccelerometer sensor
