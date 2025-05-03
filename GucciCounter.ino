@@ -16,10 +16,10 @@ float max_zg = 0;
 bool increment = true;
 const int BIG_MAG = 30;
 const int LITTLE_MAG = 20;
-const float Z_AXIS_GFORCE_THRESHOLD = 0.50;
-const float X_AXIS_GFORCE_THRESHOLD = 0.75;
+const float Z_AXIS_GFORCE_THRESHOLD = 0.62;
+const float X_AXIS_GFORCE_THRESHOLD = 0.93;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
-const int COUNT_DELAY = 50;
+const int COUNT_DELAY = 125;
 #define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
 
 // Define the update interval (in milliseconds)
