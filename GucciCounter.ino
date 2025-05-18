@@ -16,11 +16,12 @@ float max_zg = 0;
 bool increment = true;
 const int BIG_MAG = 30;
 const int LITTLE_MAG = 20;
-const float Z_AXIS_GFORCE_THRESHOLD = 0.62;
+const float Z_AXIS_GFORCE_THRESHOLD = 0.50; // This is pretty low, but when the last round is fired and the bolt locks back the counter wasnt not registering.
 const float X_AXIS_GFORCE_THRESHOLD = 0.93;
 const float Y_AXIS_GFORCE_THRESHOLD = 0.75;
-const int COUNT_DELAY = 125;
-#define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
+
+// I need to play with this number as for some shots met all the requirements but did not register.
+const int COUNT_DELAY = 50;
 
 // Define the update interval (in milliseconds)
 #define UPDATE_INTERVAL 16 // 500 ms = 0.5 seconds
