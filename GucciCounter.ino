@@ -30,7 +30,7 @@ void setup(void)
 {
   display.begin();
   // Sets main current level, valid levels are 0-15
-  display.setBrightness(13);
+  display.setBrightness(15);
   flipDisplay(true);
   Wire.begin();
   // Set up the BMA250 acccelerometer sensor
@@ -145,7 +145,7 @@ void displayDebug(float x_g, float y_g, float max_zg)
   display.print("Y" + String(y_g));
   display.setCursor(5, 45);
   display.print("Z(m): " + String(max_zg));
-  delay(UPDATE_INTERVAL);
+  // delay(UPDATE_INTERVAL);
   //==========================================================
 }
 
